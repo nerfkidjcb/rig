@@ -1,0 +1,3 @@
+# Programs
+
+-  Terminal: Kitty

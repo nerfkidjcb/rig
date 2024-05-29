@@ -360,10 +360,22 @@ passwd <username>
 
 Enter and confirm the user password.
 
+Grant the user sudo privileges:
+
+```bash
+sudo EDITOR=nvim visudo
+```
+
+Uncomment the line:
+
+```bash
+%wheel ALL=(ALL) ALL
+```
+
 Install packages:
 
 ```bash
-pacman -S base-devel grub efibootmgr networkmanager lvm2 neovim sudo
+pacman -S base-devel grub efibootmgr networkmanager lvm2 neovim sudo git xorg
 ```
 
 > **Note**: If any packages ask which version to install, select the default version: press `Enter`.
