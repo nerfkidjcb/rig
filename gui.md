@@ -56,6 +56,14 @@ Start DWM:
 startx
 ```
 
+Add the following to the end of `~/.bash_profile`:
+
+```bash
+if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+  exec startx
+fi
+```
+
 ## Dynamic menu
 
 I use rofi as a dynamic menu.
