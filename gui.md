@@ -1,5 +1,11 @@
 # Set up display output
 
+## Fonts
+
+```bash
+sudo pacman -S ttf-nerd-fonts-symbols-mono
+```
+
 ## Window manager
 
 I use DWM. It is a lightweight and therefore fast and efficient window manager.
@@ -33,7 +39,7 @@ Write and quit the file.
 Install DWM:
 
 ```bash
-sudo make install
+sudo make clean install
 ```
 
 Open the `~/.xinitrc` file:
@@ -63,6 +69,26 @@ if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
   exec startx
 fi
 ```
+
+### Patches
+
+Create the `dwm/patches` directory.
+
+Visit the [Suckless patches repository](https://dwm.suckless.org/patches/), select the patch diffs and use `wget` to clone them into the new `dwm/patches` directory.
+
+Patches I use:
+
+- fullgaps
+
+- barpadding
+
+
+### dwmblocks
+
+I use dwmblocks to customise my DWM statusbar.
+
+
+
 
 ## Dynamic menu
 

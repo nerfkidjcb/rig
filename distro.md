@@ -375,7 +375,7 @@ Uncomment the line:
 Install packages:
 
 ```bash
-pacman -S base-devel grub efibootmgr networkmanager lvm2 neovim sudo git xorg
+pacman -S base-devel grub efibootmgr networkmanager lvm2 neovim sudo xorg alsa-tools alsa-utils pipewire pipewire-alsa pipewire-audio pipewire-pulse wireplumber
 ```
 
 > **Note**: If any packages ask which version to install, select the default version: press `Enter`.
@@ -518,4 +518,10 @@ Connect to the network:
 
 ```bash
 nmcli device wifi connect <SSID> password <password>
+```
+
+Name the device:
+
+```bash
+hostnamectl hostname <host>
 ```
