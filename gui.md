@@ -1,16 +1,48 @@
 # Set up display output
 
-## Fonts
+## Install system
 
 ```bash
-sudo pacman -S ttf-nerd-fonts-symbols-mono
+sudo pacman -S ...
 ```
 
-## Window manager
+- `alacritty`
 
-I use DWM. It is a lightweight and therefore fast and efficient window manager.
+- `feh`
 
-Clone the DWM repository (into the home directory - it can be removed later):
+- `firefox`
+
+- `github-cli`
+
+- `nodejs`
+
+- `npm`
+
+- `rofi`
+
+- `ttf-jetbrains-mono-nerd`
+
+- `wget`
+
+- `zsh`
+
+## Shell - ZHS
+
+List installed shells:
+
+```bash
+chsh -l
+```
+
+Set ZHS as the default shell:
+
+```bash
+chsh -s </path/to/zhs>
+```
+
+## Window manager - DWM
+
+Clone the DWM repository:
 
 ```bash
 git clone https://git.suckless.org/dwm
@@ -19,10 +51,11 @@ git clone https://git.suckless.org/dwm
 Edit the `config.mk` file:
 
 ```bash
-nvim dwm/config.def.h
+cd dwm
+nvim config.def.h
 ```
 
-Set the terminal to `kitty` by replacing `st` with `kitty` in the following line:
+Set the terminal to `alacritty` by replacing `st` with `alacritty` in the following line:
 
 ```c
 static const char *termcmd[]  = { "st", NULL };
@@ -62,7 +95,7 @@ Start DWM:
 startx
 ```
 
-Add the following to the end of `~/.bash_profile`:
+Add the following to the end of `~/.zprofile`:
 
 ```bash
 if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
@@ -82,14 +115,38 @@ Patches I use:
 
 - barpadding
 
+To test a patch can be integrated before commiting to it, run:
+
+```bash
+patch --dry-run <patches/<patch_name>.diff
+```
+
+If everything succeeds, integrate the patch:
+
+```bash
+patch <patches/<patch_name>.diff
+```
+
+After being integrated, most patches will have added some new variables and configurations to `config.def.h`, so the same process as above can be used to edit and build these changes.
 
 ### dwmblocks
 
-I use dwmblocks to customise my DWM statusbar.
+Change into your `.config` directory and clone the dwmblocks repo:
+
+```bash
+git clone https://github.com/torrinfail/dwmblocks.git
+```
+
+Inside the `.config/dwmblocks` directory that this creates is a `blocks.def.h` config file that is edited and built in exactly the same was as `dwm/config.def.h`. This file can be used to customise each of the elements in the status bar. Each element has
+
+- a tag,
+
+- a command that it runs on the system and displays the output of,
+
+- a query interval (how often the command is run),
+
+- and a process ID that can be referred to by other processes to update the status bar.
+
+## Terminal - Alacritty
 
 
-
-
-## Dynamic menu
-
-I use rofi as a dynamic menu.
