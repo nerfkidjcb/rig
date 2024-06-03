@@ -1,6 +1,6 @@
-# Set up display output
+# System setup
 
-## Install system
+Install system:
 
 ```bash
 sudo pacman -S ...
@@ -13,6 +13,8 @@ sudo pacman -S ...
 - `firefox`
 
 - `github-cli`
+
+- `lf`
 
 - `nodejs`
 
@@ -39,6 +41,12 @@ Set ZHS as the default shell:
 ```bash
 chsh -s </path/to/zhs>
 ```
+
+### Config
+
+- `~/.zshrc`
+
+- `~/.zprofile`
 
 ## Window manager - DWM
 
@@ -147,6 +155,20 @@ Inside the `.config/dwmblocks` directory that this creates is a `blocks.def.h` c
 
 - and a process ID that can be referred to by other processes to update the status bar.
 
+#### Config
+
+- `.config/dwmblocks/blocks.def.h`
+
 ## Terminal - Alacritty
 
+### Config
 
+- `.config/alacritty.toml`
+
+## File explorer - lf
+
+### Config
+
+- `.config/lf/lfrc`
+
+## Browser - Firefox
