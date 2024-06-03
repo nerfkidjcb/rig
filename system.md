@@ -125,6 +125,8 @@ Patches I use:
 
 - `statuspadding`
 
+- `actualfullscreen`
+
 To test a patch can be integrated before commiting to it, run:
 
 ```bash
