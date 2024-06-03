@@ -119,9 +119,11 @@ Visit the [Suckless patches repository](https://dwm.suckless.org/patches/), sele
 
 Patches I use:
 
-- fullgaps
+- `fullgaps`
 
-- barpadding
+- `barpadding`
+
+- `statuspadding`
 
 To test a patch can be integrated before commiting to it, run:
 
