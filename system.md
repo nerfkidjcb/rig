@@ -127,6 +127,8 @@ Patches I use:
 
 - `actualfullscreen`
 
+- `underlinetags`
+
 To test a patch can be integrated before commiting to it, run:
 
 ```bash
