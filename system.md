@@ -18,6 +18,8 @@ sudo pacman -S ...
 
 - `lf`
 
+- `lm_sensors`
+
 - `nodejs`
 
 - `npm`
