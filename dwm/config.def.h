@@ -1,33 +1,38 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 5;	/* border pixel of windows */
-static const unsigned int gappx     = 25;	/* gaps between windows */
+static const unsigned int borderpx  = 3;	/* border pixel of windows */
+static const unsigned int gappx     = 15;	/* gaps between windows */
 static const unsigned int snap      = 32;	/* snap pixel */
 static const int showbar            = 1;	/* 0 means no bar */
 static const int topbar             = 1;	/* 0 means bottom bar */
-static const int vertpad	    = 25;	/* vertical padding of bar*/
-static const int sidepad	    = 25;	/* horiontal padding of bar */
-static const int horizpadbar        = 25;	/* horizontal padding for statusbar */
-static const int vertpadbar         = 25;	/* vertical padding for statusbar */
+static const int vertpad	    = 15;	/* vertical padding of bar*/
+static const int sidepad	    = 15;	/* horiontal padding of bar */
+static const int horizpadbar        = 32;	/* horizontal padding for statusbar */
+static const int vertpadbar         = 32;	/* vertical padding for statusbar */
 static const char *fonts[]	    = { "JetBrainsMono Nerd Font:weight=bold:size=16" };
 static const char *colors[][3]      = {
 	/*               text       container  border    */
 	[SchemeNorm] = { "#ffffff", "#04070D", "#04070D" },
-	[SchemeSel]  = { "#ffffff", "#0D1117", "#2F81F7"  },
+	[SchemeSel]  = { "#2F81F7", "#ffffff", "#2F81F7"  },
 };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5" };
 
+static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke	= 3;	/* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
+static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
+
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
-};
+     	/* xprop(1):
+     	 *	WM_CLASS(STRING) = instance, class
+     	 *	WM_NAME(STRING) = title
+     	 */
+     	/* class      instance    title       tags mask     isfloating   monitor */
+     	{ "Firefox",  NULL,       NULL,       1 << 5,       0,           -1 },
+     };
 
 /* layout(s) */
 static const float mfact	= 0.55;	/* factor of master area size [0.05..0.95] */
@@ -37,9 +42,7 @@ static const int lockfullscreen = 1;	/* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "[]=",      tile }
 };
 
 /* key definitions */
@@ -78,16 +81,15 @@ static const Key keys[] = {
 	/* programs */
 	{ MODKEY,			XK_Return,			spawn,          {.v = openTerminal } },
 	{ MODKEY,			XK_p,				spawn,          {.v = openBrowser } },
-	{ MODKEY,			XK_c,				killclient,     {0} },
 
 	/* monitors */
 	{ MODKEY,                       XK_comma,			focusmon,       {.i = +1 } },
 	{ MODKEY,			XK_period,			tagmon,         {.i = +1 } },
 	
 	/* layout */
+	{ MODKEY,			XK_c,				killclient,     {0} },
 	{ MODKEY,                       XK_t,				setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,				setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,				setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_f,                           togglefullscr,  {0} },
 
 	/* tags */
 	{ MODKEY,                       XK_Tab,				view,           {0} },
@@ -101,12 +103,10 @@ static const Key keys[] = {
 	/* utility */
 	{ MODKEY,			XK_h,				setmfact,	{.f = -0.05} },
 	{ MODKEY,			XK_l,				setmfact,	{.f = +0.05} },
-	{ MODKEY,			XK_b,				togglebar,      {0} },
 	{ MODKEY,			XK_q,				quit,           {0} },
 	{ MODKEY|ShiftMask,		XK_r,				spawn,          {.v = rebootMachine } },
 	{ MODKEY|ShiftMask,		XK_q,				spawn,		{.v = poweroffMachine } },
 };
-		
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
