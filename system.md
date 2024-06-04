@@ -12,6 +12,8 @@ sudo pacman -S ...
 
 - `firefox`
 
+- `git`
+
 - `github-cli`
 
 - `lf`
@@ -20,9 +22,11 @@ sudo pacman -S ...
 
 - `npm`
 
-- `rofi`
+- `sysstat`
 
 - `ttf-jetbrains-mono-nerd`
+
+- `ttf-nerd-fonts-symbols-mono`
 
 - `wget`
 
