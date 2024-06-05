@@ -55,7 +55,7 @@
 #define WIDTH(X)                ((X)->w + 2 * (X)->bw)
 #define HEIGHT(X)               ((X)->h + 2 * (X)->bw)
 #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
-#define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
+#define TEXTW(X)                (drw_fontset_getwidth(drw, (X)))
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
@@ -709,11 +709,11 @@ drawbar(Monitor *m)
 		return;
 
 	/* draw status first so it can be overdrawn by tags later */
-	if (m == selmon) { /* status is only drawn on selected monitor */
+	// if (m == selmon) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		tw = TEXTW(stext);
-		drw_text(drw, m->ww - tw - 2 * sp, 0, tw, bh, 0, stext, 0);
-	}
+		drw_text(drw, m->ww - tw - 2 * sp - sidepad, 0, tw + sidepad, bh, 0, stext, 0);
+	//}
 
 	for (c = m->clients; c; c = c->next) {
 		occ |= c->tags;
@@ -722,7 +722,7 @@ drawbar(Monitor *m)
 	}
 	x = 0;
 	for (i = 0; i < LENGTH(tags); i++) {
-		w = TEXTW(tags[i]);
+		w = TEXTW(tags[i]) + lrpad;
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
 		if (ulineall || m->tagset[m->seltags] & 1 << i) /* if there are conflicts, just move these lines directly underneath both 'drw_setscheme' and 'drw_text' :) */
@@ -741,18 +741,16 @@ drawbar(Monitor *m)
 			/* set left offset (which is within the container) to 0 and instead reduced the width and
 			 * shifted it horizontally to get proper centering (using the statusbar padding variable) */
 
-			int adjw = w - 2 * sidepad;
-
 			if (TEXTW(m->sel->name) > w) /* title is bigger than the width of the title rectangle, don't center */
-				drw_text(drw, x, 0, adjw, bh, (adjw - TEXTW(m->sel->name) - horizpadbar) / 2, m->sel->name, 0);
+				drw_text(drw, x, 0, w - lrpad, bh, sidepad, m->sel->name, 0);
 			else /* center window title */
-				drw_text(drw, x + (w - 2 * sidepad - TEXTW(m->sel->name)) / 2, 0, TEXTW(m->sel->name), bh, lrpad / 2, m->sel->name, 0); // add offset of 1 and + 2 to prevent '...'
+				drw_text(drw, x, 0, w - lrpad, bh, (w - lrpad - TEXTW(m->sel->name)) / 2, m->sel->name, 0); // add offset of 1 and + 2 to prevent '...'
 
 			if (m->sel->isfloating)
 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
 		} else {
 			drw_setscheme(drw, scheme[SchemeNorm]);
-			drw_rect(drw, x, 0, w - 2 * sp, bh, 1, 1);
+			drw_rect(drw, x, 0, w - lrpad * sp, bh, 1, 1);
 		}
 	}
 	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
@@ -2035,9 +2033,11 @@ updatesizehints(Client *c)
 void
 updatestatus(void)
 {
+	Monitor* m;
 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
 		strcpy(stext, "dwm-"VERSION);
-	drawbar(selmon);
+	for (m = mons; m; m=m->next)
+		drawbar(m);
 }
 
 void

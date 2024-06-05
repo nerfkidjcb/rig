@@ -2,25 +2,25 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;	/* border pixel of windows */
-static const unsigned int gappx     = 15;	/* gaps between windows */
-static const unsigned int snap      = 32;	/* snap pixel */
+static const unsigned int gappx     = 12;	/* gaps between windows */
+static const unsigned int snap      = 22;	/* snap pixel */
 static const int showbar            = 1;	/* 0 means no bar */
 static const int topbar             = 1;	/* 0 means bottom bar */
-static const int vertpad	    = 15;	/* vertical padding of bar*/
-static const int sidepad	    = 15;	/* horiontal padding of bar */
-static const int horizpadbar        = 32;	/* horizontal padding for statusbar */
-static const int vertpadbar         = 32;	/* vertical padding for statusbar */
-static const char *fonts[]	    = { "JetBrainsMono Nerd Font:weight=bold:size=16" };
+static const int vertpad	    = 12;	/* vertical padding of bar*/
+static const int sidepad	    = 12;	/* horiontal padding of bar */
+static const int horizpadbar        = 22;	/* horizontal padding for statusbar */
+static const int vertpadbar         = 22;	/* vertical padding for statusbar */
+static const char *fonts[]	    = { "JetBrainsMono Nerd Font:weight=bold:size=11" };
 static const char *colors[][3]      = {
 	/*               text       container  border    */
 	[SchemeNorm] = { "#ffffff", "#04070D", "#04070D" },
-	[SchemeSel]  = { "#2F81F7", "#ffffff", "#2F81F7"  },
+	[SchemeSel]  = { "#2F81F7", "#04070D", "#2F81F7"  },
 };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5" };
 
-static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinepad	= 0;	/* horizontal padding between the underline and tag */
 static const unsigned int ulinestroke	= 3;	/* thickness / height of the underline */
 static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
 static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
