@@ -135,6 +135,8 @@ Patches I use:
 
 - `underlinetags`
 
+- `statusallmons`
+
 To test a patch can be integrated before commiting to it, run:
 
 ```bash
