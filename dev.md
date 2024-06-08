@@ -11,3 +11,5 @@ sudo pacman -S ...
 - `ripgrep`
 
 - `fd`
+
+- `unzip`
