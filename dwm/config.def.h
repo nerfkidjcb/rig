@@ -92,6 +92,9 @@ static const Key keys[] = {
 	{ MODKEY,			XK_c,				killclient,     {0} },
 	{ MODKEY,                       XK_t,				setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,                           togglefullscr,  {0} },
+	{ MODKEY,                       XK_j,      			focusstack,     {.i = +1 } },
+   	{ MODKEY,                       XK_k,      			focusstack,     {.i = -1 } },
+   	// TODO: command for "if master, swap with top of stack, otherwise swap current selected window on the stack with master"
 
 	/* tags */
 	{ MODKEY,                       XK_Tab,				view,           {0} },
