@@ -13,7 +13,7 @@ static const int vertpadbar         = 22;	/* vertical padding for statusbar */
 static const char *fonts[]	    = { "JetBrainsMono Nerd Font:weight=bold:size=11" };
 static const char *colors[][3]      = {
 	/*               text       container  border    */
-	[SchemeNorm] = { "#ffffff", "#04070D", "#04070D" },
+	[SchemeNorm] = { "#ffffff", "#04070D", "#0D1117" },
 	[SchemeSel]  = { "#2F81F7", "#04070D", "#2F81F7"  },
 };
 
