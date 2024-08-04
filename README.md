@@ -220,7 +220,7 @@ Format the EFI (second) partition as FAT32:
 mkfs.ext4 /dev/<device>p2
 ```
 
-Encrypt the LVM (third) partition, as it will contain the root and swap volumes (i.e., the actual stuff we store and use on our computer):
+Encrypt the home LVM (third) partition, as it will contain the root and swap volumes (i.e., the actual stuff we store and use on our computer):
 
 ```bash
 cryptsetup luksFormat /dev/<device>p3
