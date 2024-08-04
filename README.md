@@ -151,7 +151,7 @@ Leave the first sector (beginning of the partition) as the default: press `Enter
 Make this new partition 500 gigabytes in size:
 
 ```bash
-+1G
++500G
 ```
 
 Enter type selection mode:
@@ -274,7 +274,13 @@ mkswap /dev/vg0/lv_swap
 swapon /dev/vg0/lv_swap
 ```
 
-Create the logical volume for the home partition:
+Create the logical volume for the productivity user partition:
+
+```bash
+lvcreate -L 235GB vg0 -n lv_root
+```
+
+Create the logical volume for the entertainment user partition:
 
 ```bash
 lvcreate -l 100%FREE vg0 -n lv_home
