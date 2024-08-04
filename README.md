@@ -321,13 +321,25 @@ vgchange -ay
 Format the root partition as ext4:
 
 ```bash
-mkfs.ext4 /dev/vg0/lv_root
+mkfs.ext4 /dev/vg_system/lv_root
 ```
 
-Format the home partition as ext4:
+Format the productivity user partition as ext4:
 
 ```bash
-mkfs.ext4 /dev/vg0/lv_home
+mkfs.ext4 /dev/vg_system/lv_productivity
+```
+
+Format the entertainment user partition as ext4:
+
+```bash
+mkfs.ext4 /dev/vg_system/lv_productivity
+```
+
+Format the games partition as ext4:
+
+```bash
+mkfs.ext4 /dev/vg_games/lv_games
 ```
 
 ### Partition mounting
