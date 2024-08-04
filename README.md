@@ -347,7 +347,7 @@ mkfs.ext4 /dev/vg_games/lv_games
 Mount the root partition:
 
 ```bash
-mount /dev/vg0/lv_root /mnt
+mount /dev/vg_system/lv_root /mnt
 ```
 
 Create the boot directory:
@@ -373,7 +373,7 @@ mkdir /mnt/home
 Mount the home partition:
 
 ```bash
-mount /dev/vg0/lv_home /mnt/home
+mount /dev/vg_system/lv_home /mnt/home
 ```
 
 ### Install essential packages
@@ -514,10 +514,10 @@ Add the encrypt device to the GRUB configuration:
 nvim /etc/default/grub
 ```
 
-Add `cryptdevice=/dev/<device>p3:vg0` to the `GRUB_CMDLINE_LINUX_DEFAULT` line:
+Add `cryptdevice=/dev/<device>p3:vg_system` to the `GRUB_CMDLINE_LINUX_DEFAULT` line:
 
 ```bash
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=/dev/<device>p3:vg0"
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=/dev/<device>p3:vg_system"
 ```
 
 Setup EFI partition:
