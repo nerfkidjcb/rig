@@ -136,7 +136,39 @@ Make this new partition 1 gigabyte in size:
 +1G
 ```
 
-### Create the LVM partition
+### Create the home LVM partition
+
+Create a new partition:
+
+```bash
+n
+```
+
+Leave the partition number as the default: press `Enter`.
+
+Leave the first sector (beginning of the partition) as the default: press `Enter`.
+
+Make this new partition 500 gigabytes in size:
+
+```bash
++1G
+```
+
+Enter type selection mode:
+
+```bash
+t
+```
+
+Select the partition you just created: press `Enter`.
+
+Select the Linux large volume manager (LVM) type:
+
+```bash
+44
+```
+
+### Create the games LVM partition
 
 Create a new partition:
 
