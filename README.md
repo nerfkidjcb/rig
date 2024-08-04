@@ -244,49 +244,61 @@ Create the physical volume:
 pvcreate /dev/mapper/lvm
 ```
 
-Create the volume group:
+Create the system volume group:
 
 ```bash
-vgcreate vg0 /dev/mapper/lvm
+vgcreate vg_system /dev/mapper/lvm
 ```
 
 Create the logical volume for the root partition:
 
 ```bash
-lvcreate -L 30GB vg0 -n lv_root
+lvcreate -L 30GB vg_system -n lv_root
 ```
 
 [Optional] Create the logical volume for the swap partition:
 
 ```bash
-lvcreate -L <RAM-size>GB vg0 -n lv_swap
+lvcreate -L <RAM-size>GB vg_system -n lv_swap
 ```
 
 [Optional] Configure the swap partition:
 
 ```bash
-mkswap /dev/vg0/lv_swap
+mkswap /dev/vg_system/lv_swap
 ```
 
 [Optional] Enable the swap partition:
 
 ```bash
-swapon /dev/vg0/lv_swap
+swapon /dev/vg_system/lv_swap
 ```
 
 Create the logical volume for the productivity user partition:
 
 ```bash
-lvcreate -L 235GB vg0 -n lv_root
+lvcreate -L 235GB vg_system -n lv_productivity
 ```
 
 Create the logical volume for the entertainment user partition:
 
 ```bash
-lvcreate -l 100%FREE vg0 -n lv_home
+lvcreate -l 100%FREE vg_system -n lv_entertainment
 ```
 
 > **Note**: We can run `vgdisplay` to see the volume group information, and `lvdisplay` to see the logical volume information.
+
+Create the games volume group:
+
+```bash
+vgcreate vg_games /dev/sda4
+```
+
+Create the logical volume for the games partition:
+
+```bash
+lvcreate -l 100%FREE vg_games -n lv_games
+```
 
 Load the necessary kernel modules:
 
