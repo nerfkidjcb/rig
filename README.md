@@ -364,16 +364,28 @@ mount /dev/<device>p2 /mnt/boot
 
 > **Note**: We are not mounting the boot (first) partition...
 
-Create the home directory:
+Create the productivity user directory:
 
 ```bash
-mkdir /mnt/home
+mkdir /mnt/p
 ```
 
-Mount the home partition:
+Mount the productivity user partition:
 
 ```bash
-mount /dev/vg_system/lv_home /mnt/home
+mount /dev/vg_system/lv_productivity /mnt/p
+```
+
+Create the entertainment user directory:
+
+```bash
+mkdir /mnt/e
+```
+
+Mount the entertainment user partition:
+
+```bash
+mount /dev/vg_system/lv_entertainment /mnt/e
 ```
 
 ### Install essential packages
