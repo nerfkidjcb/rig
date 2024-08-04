@@ -370,7 +370,7 @@ Create the productivity user directory:
 mkdir /mnt/p
 ```
 
-Mount the productivity user partition:
+Mount the productivity user volume:
 
 ```bash
 mount /dev/vg_system/lv_productivity /mnt/p
@@ -382,10 +382,22 @@ Create the entertainment user directory:
 mkdir /mnt/e
 ```
 
-Mount the entertainment user partition:
+Mount the entertainment user volume:
 
 ```bash
 mount /dev/vg_system/lv_entertainment /mnt/e
+```
+
+Create the games directory:
+
+```bash
+mkdir /mnt/g
+```
+
+Mount the games partition:
+
+```bash
+mount /dev/vg_games/lv_games /mnt/g
 ```
 
 ### Install essential packages
