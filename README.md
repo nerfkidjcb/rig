@@ -863,7 +863,7 @@ git clone https://github.com/vinceliuice/Fluent-gtk-theme.git
 Install Fluent XFCE theme:
 
 ```bash
-Fluent-gtk-theme/install.sh -c dark -s standard -i arch --tweaks round
+Fluent-gtk-theme/install.sh -n Fluent -c dark -s standard -i arch --tweaks solid round noborder
 ```
 
 > Note: XFCE themes are stored in `~/.local/share/themes`.
