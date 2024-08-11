@@ -844,8 +844,6 @@ Install `ttf-liberation`.
 sudo chown -R <user> /home/<user>/games
 ```
 
-
-
 ## E-User config
 
 Install XFCE:
@@ -871,6 +869,8 @@ Fluent-gtk-theme/install.sh -n Fluent -c dark -s standard -i arch --tweaks solid
 Set the active theme to Fluent inside the 'Appearence' and 'Window Manager' programs.
 
 Also inside 'Window Manager', ensure workspaces are not wrapped when windows are dragged to the edge of the screen.
+
+Inside the 'Session and Startup' application, under 'Current Session' set the Restart Style of `xfce4-panel` to `Never`.
 
 Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following commands:
 
