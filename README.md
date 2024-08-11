@@ -867,5 +867,15 @@ Fluent-gtk-theme/install.sh -n Fluent -c dark -s standard -i arch --tweaks solid
 ```
 
 > Note: XFCE themes are stored in `~/.local/share/themes`.
+ 
+Set the active theme to Fluent inside the 'Appearence' and 'Window Manager' programs.
 
-Go to 'Keyboard Settings' -> 'Application Shortcuts' and set 'xfce4-appfinder' to be 'Super-F'.
+Also inside 'Window Manager', ensure workspaces are not wrapped when windows are dragged to the edge of the screen.
+
+Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following commands:
+
+- `xfce4-appfinder` : `Super-F`
+
+- `xfce4-session-logout --halt` : `Shift-Super-Q`
+
+- `xfce4-session-logout --logout` : `Super-Q`
