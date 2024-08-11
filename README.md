@@ -878,4 +878,19 @@ Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following comma
 
 - `poweroff` : `Shift-Super-Q`
 
-- `pkill -KILL -u $USER` : `Super-Q`
+- `reboot` : `Shift-Super-R`
+
+- `/mnt/e/Scripts/logout.sh` : `Super-Q`
+
+   In order to get this command to work, create the `/mnt/e/Scripts/logout.sh` file with the following content:
+ 
+   ```bash
+   #!/bin/bash
+   pkill -KILL -u $USER
+   ```
+
+   It must then be made executable:
+
+   ```bash
+   chmod +x Scripts/logout.sh
+   ```
