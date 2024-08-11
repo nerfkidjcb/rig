@@ -876,6 +876,6 @@ Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following comma
 
 - `xfce4-appfinder` : `Super-F`
 
-- `xfce4-session-logout --halt` : `Shift-Super-Q`
+- `poweroff` : `Shift-Super-Q`
 
-- `xfce4-session-logout --logout` : `Super-Q`
+- `pkill -KILL -u $USER` : `Super-Q`
