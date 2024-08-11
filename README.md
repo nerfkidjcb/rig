@@ -843,3 +843,29 @@ Install `ttf-liberation`.
 ```bash
 sudo chown -R <user> /home/<user>/games
 ```
+
+
+
+## E-User config
+
+Install XFCE:
+
+```bash
+sudo pacman -S xfce4
+```
+
+Download Fluent XFCE theme:
+
+```bash
+git clone https://github.com/vinceliuice/Fluent-gtk-theme.git
+```
+
+Install Fluent XFCE theme:
+
+```bash
+Fluent-gtk-theme/install.sh -c dark -s standard -i arch --tweaks round
+```
+
+> Note: XFCE themes are stored in `~/.local/share/themes`.
+
+Go to 'Keyboard Settings' -> 'Application Shortcuts' and set 'xfce4-appfinder' to be 'Super-F'.
