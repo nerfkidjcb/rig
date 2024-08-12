@@ -67,6 +67,7 @@ static const char *openBrowser[] = { "firefox", NULL };
 static const char *openSteam[] = { "steam", NULL };
 
 /* utility commands */
+static const char *logoutMachine[] = { "pkill -KILL -u $USER", NULL };
 static const char *rebootMachine[] = { "reboot", NULL };
 static const char *poweroffMachine[] = { "poweroff", NULL };
 
