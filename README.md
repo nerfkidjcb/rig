@@ -844,6 +844,10 @@ Install `ttf-liberation`.
 sudo chown -R <user> /home/<user>/games
 ```
 
+## Global user config
+
+> Wallpaper credit: `u/_ayushman` on Reddit.
+
 ## E-User config
 
 Install XFCE:
