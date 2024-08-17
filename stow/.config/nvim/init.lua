@@ -4,6 +4,9 @@ vim.cmd("set tabstop=3")
 vim.cmd("set softtabstop=3")
 vim.cmd("set shiftwidth=3")
 
+-- Node environment
+vim.g.node_host_prog = 'node-env-nvim.sh'
+
 -- Install Lazy package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

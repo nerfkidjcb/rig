@@ -846,7 +846,17 @@ sudo chown -R <user> /home/<user>/games
 
 ## Global user config
 
-> Wallpaper credit: `u/_ayushman` on Reddit.
+Dependencies:
+
+- `stow`
+
+Clone this repository.
+
+Run the `stow` command to symlink the configuration files:
+
+```bash
+stow -t ~ -d /rig/stow --adopt .
+```
 
 ## E-User config
 
