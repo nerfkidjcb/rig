@@ -855,7 +855,7 @@ Clone this repository.
 Run the `stow` command to symlink the configuration files:
 
 ```bash
-stow -t ~ -d /rig/stow --adopt .
+stow -t ~ -d rig/stow --adopt .
 ```
 
 ## E-User config
