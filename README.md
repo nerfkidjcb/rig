@@ -850,6 +850,10 @@ Dependencies:
 
 - `stow`
 
+- `zoxide`
+
+- `fzf`
+
 Clone this repository.
 
 Run the `stow` command to symlink the configuration files:
