@@ -80,7 +80,7 @@ local opts = {}
 require("lazy").setup(plugins, opts)
 -- Setup colors using GitHub Dark Default theme
 require("github-theme").setup()
-vim.cmd("colorscheme github_default_dark")
+vim.cmd("colorscheme github_dark_default")
 
 -- Setup tree parser with Treesitter
 local treesitter = require("nvim-treesitter.configs")
