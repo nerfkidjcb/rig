@@ -862,6 +862,12 @@ Run the `stow` command to symlink the configuration files:
 stow -t ~ -d rig/stow .
 ```
 
+Add a global git config to register the global gitignore file:
+
+```bash
+git config --global core.excludesfile ~/.gitignore_global
+```
+
 > Note: The `--adopt` flag can be used to override the dotfiles stored in this repo with the ones already configured on the system. This can be used to override all files dotfiles on the system easily without having to delete them first, and then after the symlinks are created, `git restore .` can be applied to the repo to revert all configs to how they are on this repo.
 
 ## E-User config

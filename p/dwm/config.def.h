@@ -74,42 +74,34 @@ static const Key keys[] = {
 	/* MODIFIER			KEY				FUNCTION	ARGUMENT */
 
 	/* functions */
-    	{ 0,				XF86XK_AudioRaiseVolume,	spawn,          {.v = volumeUp } },
-    	{ 0,				XF86XK_AudioRaiseVolume,	spawn,         	{.v = volumeStatus } },
-    	{ 0,				XF86XK_AudioLowerVolume,	spawn,          {.v = volumeDown } },
-    	{ 0,				XF86XK_AudioLowerVolume,	spawn,         	{.v = volumeStatus } },
+   { 0,				XF86XK_AudioRaiseVolume,	spawn,          {.v = volumeUp } },
+   { 0,				XF86XK_AudioRaiseVolume,	spawn,         	{.v = volumeStatus } },
+   { 0,				XF86XK_AudioLowerVolume,	spawn,          {.v = volumeDown } },
+   { 0,				XF86XK_AudioLowerVolume,	spawn,         	{.v = volumeStatus } },
 
 	/* programs */
 	{ MODKEY,			XK_Return,			spawn,          {.v = openTerminal } },
-	{ MODKEY,			XK_space,				spawn,          {.v = openBrowser } },
-
-	/* monitors */
-	{ MODKEY,                       XK_comma,			focusmon,       {.i = +1 } },
-	{ MODKEY,			XK_period,			tagmon,         {.i = +1 } },
+	{ MODKEY,			XK_space,			spawn,          {.v = openBrowser } },
 	
 	/* layout */
-	{ MODKEY,			XK_c,				killclient,     {0} },
-	{ MODKEY,                       XK_t,				setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,                           togglefullscr,  {0} },
-	{ MODKEY,                       XK_j,      			focusstack,     {.i = +1 } },
-   	{ MODKEY,                       XK_k,      			focusstack,     {.i = -1 } },
-   	// TODO: command for "if master, swap with top of stack, otherwise swap current selected window on the stack with master"
+	{ MODKEY,         XK_j,      			focusstack,     {.i = +1 } },
+   { MODKEY,         XK_k,      			focusstack,     {.i = -1 } },
+	{ MODKEY,			XK_h,				setmfact,	{.f = -0.05} },
+	{ MODKEY,			XK_l,				setmfact,	{.f = +0.05} },
+   // TODO: command for "if master, swap with top of stack, otherwise swap current selected window on the stack with master"
+
+	/* utility */
+   { MODKEY,			XK_c,				   killclient,     {0} },
+	{ MODKEY,			XK_q,				quit,           {0} },
+	{ MODKEY|ShiftMask,		XK_r,				spawn,          {.v = rebootMachine } },
+	{ MODKEY|ShiftMask,		XK_q,				spawn,		{.v = poweroffMachine } },
 
 	/* tags */
-	{ MODKEY,                       XK_Tab,				view,           {0} },
-	{ MODKEY,                       XK_0,				view,           {.ui = ~0 } },
 	TAGKEYS(XK_1, 0)
 	TAGKEYS(XK_2, 1)
 	TAGKEYS(XK_3, 2)
 	TAGKEYS(XK_4, 3)
 	TAGKEYS(XK_5, 4)
-
-	/* utility */
-	{ MODKEY,			XK_h,				setmfact,	{.f = -0.05} },
-	{ MODKEY,			XK_l,				setmfact,	{.f = +0.05} },
-	{ MODKEY,			XK_q,				quit,           {0} },
-	{ MODKEY|ShiftMask,		XK_r,				spawn,          {.v = rebootMachine } },
-	{ MODKEY|ShiftMask,		XK_q,				spawn,		{.v = poweroffMachine } },
 };
 
 /* button definitions */
