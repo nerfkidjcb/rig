@@ -86,9 +86,10 @@ static const Key keys[] = {
 	/* layout */
 	{ MODKEY,         XK_j,      			focusstack,     {.i = +1 } },
    { MODKEY,         XK_k,      			focusstack,     {.i = -1 } },
+   { MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,			XK_h,				setmfact,	{.f = -0.05} },
 	{ MODKEY,			XK_l,				setmfact,	{.f = +0.05} },
-   // TODO: command for "if master, swap with top of stack, otherwise swap current selected window on the stack with master"
 
 	/* utility */
    { MODKEY,			XK_c,				   killclient,     {0} },
