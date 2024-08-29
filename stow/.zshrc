@@ -88,9 +88,4 @@ export PATH="$HOME/scripts:$PATH"
 
 # Aliases
 
-## General
 alias clip='xclip -selection clipboard'
-
-## CERN dev
-alias clt='docker container start cern-wp-theme-lite-wordpress-1 && docker container start cern-wp-theme-lite-database-1 && cd ~/projects/cern-wp-theme-lite/wp-content/themes/cern-lite/src && nvim'
-alias cltn='docker container start cern-wp-theme-lite-node && cd ~/projects/cern-wp-theme-lite/wp-content/themes/cern-lite && docker-compose exec node /bin/bash'
