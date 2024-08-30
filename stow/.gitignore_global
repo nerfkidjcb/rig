@@ -1,4 +1,4 @@
-.zsh/pure
-.zsh/zsh-autosuggestions
-.zsh/zsh-completions
-.zsh/zsh-syntax-highlighting
+**/.zsh/pure/
+**/.zsh/zsh-autosuggestions/
+**/.zsh/zsh-completions/
+**/.zsh/zsh-syntax-highlighting/
