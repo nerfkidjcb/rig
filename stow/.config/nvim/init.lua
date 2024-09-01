@@ -117,30 +117,6 @@ require("lazy").setup("plugins")
 --- TEMP: All of the below is to be moved to plugins directory ---
 ------------------------------------------------------------------
 
--- Setup LSP using Mason
-local mason = require("mason")
-mason.setup()
-local mason_lsp_config = require("mason-lspconfig")
-mason_lsp_config.setup({
-   ensure_installed = { "lua_ls", "biome", "cssls", "eslint", "intelephense" },
-})
-local lsp_config = require("lspconfig")
-lsp_config.lua_ls.setup({
-   handlers = {
-      ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-         virtual_text = true,
-         signs = true,
-         update_in_insert = true,
-      }),
-   },
-})
-lsp_config.biome.setup({})
-lsp_config.cssls.setup({})
-lsp_config.eslint.setup({})
-lsp_config.intelephense.setup({})
-vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, {})
-vim.keymap.set("n", "<C-j>", vim.lsp.buf.definition, {})
-vim.keymap.set("n", "<C-l>", vim.lsp.buf.code_action, {})
 -- Setup None (a fork of null-ls) for linting and formatting
 local null_ls = require("null-ls")
 null_ls.setup({
