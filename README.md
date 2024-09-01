@@ -482,17 +482,17 @@ pacman -S linux-firmware
 
 Setup GPU drivers:
 
--  For Intel:
+- For Intel:
 
-   ```bash
-   pacman -S mesa intel-media-driver
-   ```
+  ```bash
+  pacman -S mesa intel-media-driver
+  ```
 
--  For NVIDIA:
+- For NVIDIA:
 
-   ```bash
-   pacman -S nvidia nvidia-utils
-   ```
+  ```bash
+  pacman -S nvidia nvidia-utils
+  ```
 
 ### System configuration
 
@@ -864,6 +864,16 @@ stow --adpot -t ~ -d rig/stow .
 
 > Note: The `--adopt` flag overrides the dotfiles stored in this repo with the ones already configured on the system. This can be used to override all files dotfiles on the system easily without having to delete them first, and then after the symlinks are created, `git restore .` can be applied to the repo to revert all configs to how they are on this repo.
 
+## P-User config
+
+### NeoVim
+
+#### Language servers, linters, and formatters
+
+LSP, Mason, and None-LS (a fork of Null-LS) are used to provide language server support for NeoVim.
+
+Mason is designed to install all of three of these types of components (LSP, linters, and formatters), however None-LS must be used to provide wrappers for the linters and formatters that Mason does not support. However, some linters and formatters (like ESLint) are directly supported by Mason and do not need to be wrapped by None-LS.
+
 ## E-User config
 
 Install XFCE:
@@ -885,7 +895,7 @@ Fluent-gtk-theme/install.sh -n Fluent -c dark -s standard -i arch --tweaks solid
 ```
 
 > Note: XFCE themes are stored in `~/.local/share/themes`.
- 
+
 Set the active theme to Fluent inside the 'Appearence' and 'Window Manager' programs.
 
 Also inside 'Window Manager', ensure workspaces are not wrapped when windows are dragged to the edge of the screen.
@@ -904,15 +914,15 @@ Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following comma
 
 - `/mnt/e/Scripts/logout.sh` : `Super-Q`
 
-   In order to get this command to work, create the `/mnt/e/Scripts/logout.sh` file with the following content:
- 
-   ```bash
-   #!/bin/bash
-   pkill -KILL -u $USER
-   ```
+  In order to get this command to work, create the `/mnt/e/Scripts/logout.sh` file with the following content:
 
-   It must then be made executable:
+  ```bash
+  #!/bin/bash
+  pkill -KILL -u $USER
+  ```
 
-   ```bash
-   chmod +x Scripts/logout.sh
-   ```
+  It must then be made executable:
+
+  ```bash
+  chmod +x Scripts/logout.sh
+  ```

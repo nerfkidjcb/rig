@@ -31,11 +31,11 @@ return {
                -- YAML
                "yamlls",
 
-               -- TOML
+               -- Rust / TOML
                "taplo",
-            }
+            },
          })
-      end
+      end,
    },
    {
       "neovim/nvim-lspconfig",
@@ -63,13 +63,13 @@ return {
          -- YAML
          lspconfig.yamlls.setup({})
 
-         -- TOML
+         -- Rust / TOML
          lspconfig.taplo.setup({})
 
          vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, {})
          vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-      end
+      end,
    },
    {
       "jay-babu/mason-null-ls.nvim",
@@ -97,11 +97,11 @@ return {
                -- YAML
                "yamllint",
 
-               -- Web / JSON / YAML
+               -- Web / Markdown / JSON / YAML
                "prettier",
-            }
+            },
          })
-      end
+      end,
    },
    {
       "nvimtools/none-ls.nvim",
@@ -110,6 +110,8 @@ return {
       },
       config = function()
          local null_ls = require("null-ls")
+         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
          null_ls.setup({
             sources = {
                -- Python
@@ -127,11 +129,22 @@ return {
                -- YAML
                null_ls.builtins.diagnostics.yamllint,
 
-               -- Web / JSON / YAML
+               -- Web / Markdown / JSON / YAML
                null_ls.builtins.formatting.prettier,
             },
+            on_attach = function(client, bufnr)
+               if client.supports_method("textDocument/formatting") then
+                  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+                  vim.api.nvim_create_autocmd("BufWritePre", {
+                     group = augroup,
+                     buffer = bufnr,
+                     callback = function()
+                        vim.lsp.buf.format()
+                     end,
+                  })
+               end
+            end,
          })
-         vim.keymap.set("n", "<leader>'", vim.lsp.buf.format, {})
-      end
+      end,
    },
 }

@@ -1,6 +1,6 @@
 return {
    {
-      "nvim-telescope/telescope-ui-select.nvim"
+      "nvim-telescope/telescope-ui-select.nvim",
    },
    {
       "nvim-telescope/telescope.nvim",
@@ -8,7 +8,7 @@ return {
       dependencies = { "nvim-lua/plenary.nvim" },
       config = function()
          local telescope = require("telescope")
-         local actions = require('telescope.actions')
+         local actions = require("telescope.actions")
          telescope.setup({
             defaults = {
                mappings = {
@@ -22,7 +22,7 @@ return {
             },
          })
          telescope.load_extension("ui-select")
-      end
+      end,
    },
    {
       "nvim-telescope/telescope-file-browser.nvim",
@@ -31,6 +31,6 @@ return {
          vim.keymap.set("n", "<leader>d", ":Telescope file_browser path=%:p:h select_buffer=true hidden=true<CR>")
          vim.keymap.set("n", "<leader>f", ":Telescope find_files hidden=true<CR>")
          vim.keymap.set("n", "<leader>g", ":Telescope live_grep hidden=true<CR>")
-      end
+      end,
    },
 }
