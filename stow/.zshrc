@@ -1,7 +1,7 @@
 # Plugins
 
 ## Directories where plugins will be cloned
-ZSH_DIR="~/.zsh"
+ZSH_DIR="${ZSH:-$HOME/.zsh}"
 PURE_DIR="${ZSH_DIR}/pure"
 SYNTAX_HIGHLIGHTING_DIR="${ZSH_DIR}/zsh-syntax-highlighting"
 COMPLETIONS_DIR="${ZSH_DIR}/zsh-completions"
