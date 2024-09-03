@@ -9,14 +9,11 @@ vim.opt.tabstop = 3
 vim.opt.softtabstop = 3
 vim.opt.shiftwidth = 3
 
--- Set the leader key to be `Space`
-vim.g.mapleader = " "
+-- Move left and right between windows using `Ctrl + h` and `Ctrl + l`
+vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 
--- Move left and right between windows using `Leader + h` and `Leader + l`
-vim.api.nvim_set_keymap("n", "<leader>h", "<C-w>h", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>l", "<C-w>l", { noremap = true, silent = true })
-
--- Move the selected window left (if not at the leftmost window) when pressing `Leader + Shift + h`
+-- Move the selected window left (if not at the leftmost window) when pressing `Ctrl + Shift + h`
 function MoveWindowLeft()
    local current_win = vim.api.nvim_get_current_win()
    local current_tab = vim.api.nvim_get_current_tabpage()
@@ -54,9 +51,9 @@ function MoveWindowLeft()
    vim.api.nvim_set_current_win(target_win)
 end
 
-vim.api.nvim_set_keymap("n", "<Leader><S-h>", ":lua MoveWindowLeft()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-h>", ":lua MoveWindowLeft()<CR>", { noremap = true, silent = true })
 
--- Move the selected window right (if not at the rightmost window) when pressing `Leader + Shift + l`
+-- Move the selected window right (if not at the rightmost window) when pressing `Ctrl + Shift + l`
 function MoveWindowRight()
    local current_win = vim.api.nvim_get_current_win()
    local current_tab = vim.api.nvim_get_current_tabpage()
@@ -94,7 +91,7 @@ function MoveWindowRight()
    vim.api.nvim_set_current_win(target_win)
 end
 
-vim.api.nvim_set_keymap("n", "<Leader><S-l>", ":lua MoveWindowRight()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-l>", ":lua MoveWindowRight()<CR>", { noremap = true, silent = true })
 
 -- If Lazy (package manager) has not been cloned, clone it
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
