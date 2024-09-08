@@ -41,34 +41,35 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local lspconfig = require("lspconfig")
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			-- Python
-			lspconfig.pyright.setup({})
+			lspconfig.pyright.setup({ capabilities = capabilities })
 
 			-- C/C++
-			lspconfig.clangd.setup({})
+			lspconfig.clangd.setup({ capabilities = capabilities })
 
 			-- Web
-			lspconfig.html.setup({})
-			lspconfig.cssls.setup({})
-			lspconfig.tsserver.setup({})
-			lspconfig.eslint.setup({})
+			lspconfig.html.setup({ capabilities = capabilities })
+			lspconfig.cssls.setup({ capabilities = capabilities })
+			lspconfig.tsserver.setup({ capabilities = capabilities })
+			lspconfig.eslint.setup({ capabilities = capabilities })
 
 			-- Lua
-			lspconfig.lua_ls.setup({})
+			lspconfig.lua_ls.setup({ capabilities = capabilities })
 
 			-- JSON
-			lspconfig.jsonls.setup({})
+			lspconfig.jsonls.setup({ capabilities = capabilities })
 
 			-- YAML
-			lspconfig.yamlls.setup({})
+			lspconfig.yamlls.setup({ capabilities = capabilities })
 
 			-- Rust / TOML
-			lspconfig.taplo.setup({})
+			lspconfig.taplo.setup({ capabilities = capabilities })
 
-			vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<C-j>", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<C-a>", vim.lsp.buf.code_action, {})
+			vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, {})
+			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 		end,
 	},
 	{
