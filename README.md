@@ -432,19 +432,43 @@ passwd
 
 Enter and confirm the root password.
 
-Create user:
+Create productivity user:
 
 ```bash
-useradd -m -G wheel <username>
+useradd -m -G wheel p
 ```
 
-Set user password:
+Set productivity user password:
 
 ```bash
-passwd <username>
+passwd p
 ```
 
-Enter and confirm the user password.
+Enter and confirm the password.
+
+Create entertainment user:
+
+```bash
+useradd -m -G wheel e
+```
+
+Set entertainment user password:
+
+```bash
+passwd e
+```
+
+Enter and confirm the password.
+
+Install system packages:
+
+```bash
+pacman -S alacritty alsa-tools alsa-utils base base-devel docker docker-compose efibootmgr feh firefox fzf git github-cli grub lib32-nvidia-utils linux linux-firmware linux-headers lvm2 neovim networkmanager nodejs npm nvidia nvidia-utils pipewire pipewire-alsa pipewire-audio pipewire-pulse ripgrep steam stow sudo sysstat ttf-jetbrains-mono-nerd ttf-liberation ttf-nerd-fonts-symbols-mono wget xfce4 xorg xorg-xinit zoxide zsh
+```
+
+> **Note**: If any packages ask which version to install, select the default version: press `Enter`.
+
+> **Note**: If using Intel or AMD graphics, instead of installing the Nvidia packages, install `mesa intel-media-driver` instead.
 
 Grant the user sudo privileges:
 
@@ -457,42 +481,6 @@ Uncomment the line:
 ```bash
 %wheel ALL=(ALL) ALL
 ```
-
-Install packages:
-
-```bash
-pacman -S base-devel grub efibootmgr networkmanager lvm2 neovim sudo xorg xorg-xinit alsa-tools alsa-utils pipewire pipewire-alsa pipewire-audio pipewire-pulse wireplumber
-```
-
-> **Note**: If any packages ask which version to install, select the default version: press `Enter`.
-
-Install kernel:
-
-```bash
-pacman -S linux linux-headers
-```
-
-> **Note**: If any packages ask which version to install, select the default version: press `Enter`.
-
-Install firmware:
-
-```bash
-pacman -S linux-firmware
-```
-
-Setup GPU drivers:
-
-- For Intel:
-
-  ```bash
-  pacman -S mesa intel-media-driver
-  ```
-
-- For NVIDIA:
-
-  ```bash
-  pacman -S nvidia nvidia-utils
-  ```
 
 ### System configuration
 
