@@ -588,7 +588,7 @@ When the system restarts, you will be prompted to enter the encryption passphras
 
 ### Post-installation
 
-Connect to the network:
+Connect to the network (if using wireless):
 
 ```bash
 nmcli device wifi connect <SSID> password <password>
@@ -599,42 +599,6 @@ Name the device:
 ```bash
 hostnamectl hostname <host>
 ```
-
-## System setup
-
-Install system:
-
-```bash
-sudo pacman -S ...
-```
-
-- `alacritty`
-
-- `feh`
-
-- `firefox`
-
-- `git`
-
-- `github-cli`
-
-- `lf`
-
-- `lm_sensors`
-
-- `nodejs`
-
-- `npm`
-
-- `sysstat`
-
-- `ttf-jetbrains-mono-nerd`
-
-- `ttf-nerd-fonts-symbols-mono`
-
-- `wget`
-
-- `zsh`
 
 ### Shell - ZHS
 
