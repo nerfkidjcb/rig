@@ -342,7 +342,7 @@ Format the games partition as ext4:
 mkfs.ext4 /dev/vg_games/lv_games
 ```
 
-### Partition mounting
+## Partition mounting
 
 Mount the root partition:
 
@@ -400,17 +400,15 @@ Mount the games partition:
 mount /dev/vg_games/lv_games /mnt/g
 ```
 
-### Install essential packages
+## Configure base system
 
 ```bash
 pacstrap -i /mnt base
 ```
 
-> **Note**: If any packages ask which version to install, select the default version: press `Enter`.
+**Note**: If any packages ask which version to install, select the default version by pressing `Enter`.
 
-### Generate the `fstab` file
-
-Generate the `fstab` file:
+Generate the `fstab` file (the file that automatically mounts volumes/partitions on boot):
 
 ```bash
 genfstab -U -p /mnt >> /mnt/etc/fstab
@@ -418,7 +416,7 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 > This will append the UUIDs of the partitions to the `fstab` file: root, boot, home, and swap.
 
-### Chroot into the new system
+Chroot into the new system:
 
 ```bash
 arch-chroot /mnt
@@ -466,7 +464,7 @@ Install system packages:
 pacman -S alacritty alsa-tools alsa-utils base base-devel clang docker docker-compose efibootmgr feh firefox fzf git github-cli grub lib32-nvidia-utils linux linux-firmware linux-headers lvm2 neovim networkmanager nodejs npm nvidia nvidia-utils pipewire pipewire-alsa pipewire-audio pipewire-pulse ripgrep steam stow sudo sysstat ttf-jetbrains-mono-nerd ttf-liberation ttf-nerd-fonts-symbols-mono wget xfce4 xorg xorg-xinit zoxide zsh
 ```
 
-> **Note**: If any packages ask which version to install, select the default version: press `Enter`.
+> **Note**: If any packages ask which version to install, select the default version by pressing `Enter`.
 
 > **Note**: If using Intel or AMD graphics, instead of installing the Nvidia packages, install `mesa intel-media-driver` instead.
 
@@ -481,8 +479,6 @@ Uncomment the line:
 ```bash
 %wheel ALL=(ALL) ALL
 ```
-
-### System configuration
 
 Make sure the kernel knows how to deal with encrypted partitions:
 
@@ -584,8 +580,6 @@ umount -a
 
 > **Note**: You can unplug the USB drive before the system reboots.
 
-When the system restarts, you will be prompted to enter the encryption passphrase. Enter the passphrase to boot into the system. Then log in with the user you created.
-
 ### Post-installation
 
 Connect to the network (if using wireless):
@@ -599,6 +593,8 @@ Name the device:
 ```bash
 hostnamectl hostname <host>
 ```
+
+## Global user configuration
 
 ### Shell - ZHS
 
@@ -614,11 +610,9 @@ Set ZHS as the default shell:
 chsh -s </path/to/zhs>
 ```
 
-#### Config
+> **Note:** The configuration for ZHS can be found in the `~/.zshrc` and `~/.zprofile` files (stored in the `stow` subdirectory of this repo).
 
-- `~/.zshrc`
-
-- `~/.zprofile`
+## Productivity (p) user configuration
 
 ### Window manager - DWM
 
@@ -628,31 +622,34 @@ Clone the DWM repository:
 git clone https://git.suckless.org/dwm
 ```
 
-Edit the `config.mk` file:
+Navigate to the cloned DWM directory:
 
 ```bash
 cd dwm
-nvim config.def.h
 ```
 
-Set the terminal to `alacritty` by replacing `st` with `alacritty` in the following line:
+Copy the configruation from the `p/dwm` subdirectory of this repo:
 
-```c
-static const char *termcmd[]  = { "st", NULL };
+```bash
+cp ~/rig/p/dwm/config.def.h config.def.h
 ```
 
-Change the mod key to the Super key by replacing `Mod1Mask` with `Mod4Mask` in the following line:
-
-```c
-#define MODKEY Mod1Mask
+```bash
+cp ~/rig/p/dwm/dwm.c dwm.c
 ```
-
-Write and quit the file.
 
 Install DWM:
 
 ```bash
 sudo make clean install
+```
+
+> **Note:** If rebuilding DWM after making edits to any of the config, make sure to remove the generated `config.h` beforehand.
+
+Clone the DWM blocks repository:
+
+```bash
+git clone https://github.com/torrinfail/dwmblocks.git
 ```
 
 Open the `~/.xinitrc` file:
@@ -682,40 +679,6 @@ if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
   exec startx
 fi
 ```
-
-#### Patches
-
-Create the `dwm/patches` directory.
-
-Visit the [Suckless patches repository](https://dwm.suckless.org/patches/), select the patch diffs and use `wget` to clone them into the new `dwm/patches` directory.
-
-Patches I use:
-
-- `fullgaps`
-
-- `barpadding`
-
-- `statuspadding`
-
-- `actualfullscreen`
-
-- `underlinetags`
-
-- `statusallmons`
-
-To test a patch can be integrated before commiting to it, run:
-
-```bash
-patch --dry-run <patches/<patch_name>.diff
-```
-
-If everything succeeds, integrate the patch:
-
-```bash
-patch <patches/<patch_name>.diff
-```
-
-After being integrated, most patches will have added some new variables and configurations to `config.def.h`, so the same process as above can be used to edit and build these changes.
 
 #### dwmblocks
 
