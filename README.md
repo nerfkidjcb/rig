@@ -702,6 +702,32 @@ Inside the `.config/dwmblocks` directory that this creates is a `blocks.def.h` c
 
 - `.config/dwmblocks/blocks.def.h`
 
+### _Laptop-Specific Configuration_
+
+In order to auto-login as a specific user, open the `getty tty1` service config file:
+
+```bash
+sudo systemctl edit getty@tty1
+```
+
+Between the comments that don't get overriden (towards the top of the file)m add:
+
+```bash
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/agetty --autologin your_username --noclear %I $TERM
+```
+
+Enabled the modified service:
+
+```bash
+sudo systemctl daemon-reload
+```
+
+```bash
+sudo systemctl enable getty@tty1
+```
+
 ### Terminal - Alacritty
 
 #### Config
