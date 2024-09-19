@@ -461,7 +461,7 @@ Enter and confirm the password.
 Install system packages:
 
 ```bash
-pacman -S alacritty alsa-tools alsa-utils base base-devel clang docker docker-compose efibootmgr feh firefox fzf git github-cli grub lib32-nvidia-utils linux linux-firmware linux-headers lvm2 neovim networkmanager nodejs npm nvidia nvidia-utils pipewire pipewire-alsa pipewire-audio pipewire-pulse ripgrep steam stow sudo sysstat ttf-jetbrains-mono-nerd ttf-liberation ttf-nerd-fonts-symbols-mono wget xfce4 xorg xorg-xinit zoxide zsh
+pacman -S alacritty alsa-tools alsa-utils base base-devel clang docker docker-compose efibootmgr fd feh firefox fzf git github-cli grub lib32-nvidia-utils linux linux-firmware linux-headers lvm2 neovim networkmanager nodejs npm nvidia nvidia-utils pipewire pipewire-alsa pipewire-audio pipewire-pulse ripgrep steam stow sudo sysstat ttf-jetbrains-mono-nerd ttf-liberation ttf-nerd-fonts-symbols-mono unzip wget xfce4 xorg xorg-xinit zoxide zsh
 ```
 
 > **Note**: If any packages ask which version to install, select the default version by pressing `Enter`.
@@ -504,10 +504,16 @@ Set locale:
 nvim /etc/locale.gen
 ```
 
-Uncomment the locale you want to use:
+Uncomment the locale(s) you want to use:
 
 ```bash
 en_GB.UTF-8 UTF-8
+```
+
+...and...
+
+```bash
+en_US.UTF-8 UTF-8
 ```
 
 Generate the locale:
@@ -596,8 +602,6 @@ hostnamectl hostname <host>
 
 ## Global user configuration
 
-### Shell - ZHS
-
 List installed shells:
 
 ```bash
@@ -612,9 +616,21 @@ chsh -s </path/to/zhs>
 
 > **Note:** The configuration for ZHS can be found in the `~/.zshrc` and `~/.zprofile` files (stored in the `stow` subdirectory of this repo).
 
-## Productivity (p) user configuration
+For each of the users, clone this repo into the root directory:
 
-### Window manager - DWM
+```bash
+git clone https://github.com/dan-smith-tech/rig.git
+```
+
+For each of the users, run the `stow` command to symlink the configuration files:
+
+```bash
+stow --adopt -t ~ -d rig/stow .
+```
+
+> Note: The `--adopt` flag overrides the dotfiles stored in this repo with the ones already configured on the system. This can be used to override all files dotfiles on the system easily without having to delete them first, and then after the symlinks are created, `git restore .` can be applied to this repo to revert all configs to how they are here.
+
+## Productivity (p) user configuration
 
 Clone the DWM repository:
 
@@ -638,7 +654,7 @@ cp ~/rig/p/dwm/config.def.h config.def.h
 cp ~/rig/p/dwm/dwm.c dwm.c
 ```
 
-Install DWM:
+Build and install DWM:
 
 ```bash
 sudo make clean install
@@ -652,57 +668,33 @@ Clone the DWM blocks repository:
 git clone https://github.com/torrinfail/dwmblocks.git
 ```
 
-Open the `~/.xinitrc` file:
+Navigate into the cloned DWM blocks directory:
 
 ```bash
-nvim ~/.xinitrc
+cd dwmblocks
 ```
 
-Add the following line to the file:
+Copy the DWM blocks configuration from the `p/dwm` subdirectory of this repo:
 
 ```bash
-exec dwm
+cp ~/rig/p/dwm/blocks.def.h blocks.def.h
 ```
 
-Write and quit the file.
-
-Start DWM:
+Build and install DWM blocks:
 
 ```bash
-startx
+sudo make clean install
 ```
 
-Add the following to the end of `~/.zprofile`:
+> **Note:** If rebuilding DWM blocks after making edits to any of the config, make sure to remove the generated `config.h` beforehand.
+
+Copy the Xorg startup configuration from the `p` subdirectory of this repo:
 
 ```bash
-if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
-  exec startx
-fi
+cp ~/rig/p/dwm/.xinitrc ~/.xinitrc
 ```
 
-#### dwmblocks
-
-Change into your `.config` directory and clone the dwmblocks repo:
-
-```bash
-git clone https://github.com/torrinfail/dwmblocks.git
-```
-
-Inside the `.config/dwmblocks` directory that this creates is a `blocks.def.h` config file that is edited and built in exactly the same was as `dwm/config.def.h`. This file can be used to customise each of the elements in the status bar. Each element has
-
-- a tag,
-
-- a command that it runs on the system and displays the output of,
-
-- a query interval (how often the command is run),
-
-- and a process ID that can be referred to by other processes to update the status bar.
-
-##### Config
-
-- `.config/dwmblocks/blocks.def.h`
-
-### _Laptop-Specific Configuration_
+### _Laptop-Specific_ Configuration
 
 In order to auto-login as a specific user, open the `getty tty1` service config file:
 
@@ -728,94 +720,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable getty@tty1
 ```
 
-### Terminal - Alacritty
-
-#### Config
-
-- `.config/alacritty.toml`
-
-### Browser - Firefox
-
-## Development environment
-
-### Neovim
-
-Install `nvim` plugin dependencies:
-
-```bash
-sudo pacman -S ...
-```
-
-- `ripgrep`
-
-- `fd`
-
-- `unzip`
-
-## Games
-
-### Enable multilib
-
-Uncomment the `multilib` section in `/etc/pacman.conf`:
-
-```bash
-[multilib]
-Include = /etc/pacman.d/mirrorlist
-```
-
-Upgrade the system:
-
-```bash
-pacman -Syu
-```
-
-### Install Steam
-
-```bash
-sudo pacman -S steam
-```
-
-Generate the `en_US.UTF-8` locale.
-
-Install `ttf-liberation`.
-
-[Optional] Give permissions to external mount points if games are stored on them:
-
-```bash
-sudo chown -R <user> /home/<user>/games
-```
-
-## Global user config
-
-Dependencies:
-
-- `stow`
-
-- `zoxide`
-
-- `fzf`
-
-Clone this repository.
-
-Run the `stow` command to symlink the configuration files:
-
-```bash
-stow --adopt -t ~ -d rig/stow .
-```
-
-> Note: The `--adopt` flag overrides the dotfiles stored in this repo with the ones already configured on the system. This can be used to override all files dotfiles on the system easily without having to delete them first, and then after the symlinks are created, `git restore .` can be applied to the repo to revert all configs to how they are on this repo.
-
-## P-User config
-
-### NeoVim
-
-#### Language servers, linters, and formatters
-
-LSP, Mason, and None-LS (a fork of Null-LS) are used to provide language server support for NeoVim.
-
-Mason is designed to install all of three of these types of components (LSP, linters, and formatters), however None-LS must be used to provide wrappers for the linters and formatters that Mason does not support. However, some linters and formatters (like ESLint) are directly supported by Mason and do not need to be wrapped by None-LS.
-
-## E-User config
+## Entertainment (e) user configuration
 
 Install XFCE:
 
@@ -867,3 +772,22 @@ Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following comma
   ```bash
   chmod +x Scripts/logout.sh
   ```
+
+Uncomment the `multilib` section in `/etc/pacman.conf`:
+
+```bash
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
+Upgrade the system:
+
+```bash
+pacman -Syu
+```
+
+Give permissions to external mount points if games are stored on them:
+
+```bash
+sudo chown -R <user> /home/<user>/games
+```
