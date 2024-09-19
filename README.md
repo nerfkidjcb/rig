@@ -722,12 +722,6 @@ sudo systemctl enable getty@tty1
 
 ## Entertainment (e) user configuration
 
-Install XFCE:
-
-```bash
-sudo pacman -S xfce4
-```
-
 Download Fluent XFCE theme:
 
 ```bash
