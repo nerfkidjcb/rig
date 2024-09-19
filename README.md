@@ -2,6 +2,20 @@
 
 The [Arch Linux wiki](https://wiki.archlinux.org/) contains a comprehensive, up-to-date guide on how to install Arch Linux. And the [Arch Linux Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide) is a good starting point. The [Arch Linux website](https://www.archlinux.org/) provides the latest news on the distro which is important to keep up with.
 
+## Overview
+
+- I use Arch Linux on all of my personal devices (PC and Laptop).
+
+  - On my PC I configure two users: a 'productivity' user running DWM for development work, and an 'entertainment' user running XFCE for playing video games (a traditional floating window manager really helps run Steam/games, which is why I don't use DWM for everything).
+ 
+  - On my laptop, I run only DWM.
+
+- I like my systems to be as lightweight as possible, so run the smallest/simplest versions of the tools I need, and don't use tools that aren't necessary (such as display managers).
+ 
+- I use the terminal for everything other than browsing the web and playing video games, as I am a massive advocate of FOSS and simplicity.
+
+- I like to configure everything in dotfiles (no GUIs if they can be avoided), and use Stow to sync the settings that are not specific to a user type (i.e., window manager dotfiles are not synced, but shell, terminal, file editor, etc. are).
+
 ## Pre-installation
 
 ### Install Ventoy
