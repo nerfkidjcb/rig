@@ -350,7 +350,7 @@ mkfs.ext4 /dev/vg_system/lv_productivity
 Format the entertainment user partition as ext4:
 
 ```bash
-mkfs.ext4 /dev/vg_system/lv_productivity
+mkfs.ext4 /dev/vg_system/lv_entertainment
 ```
 
 Format the games partition as ext4:
