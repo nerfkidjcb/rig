@@ -428,7 +428,7 @@ pacstrap -i /mnt base
 Generate the `fstab` file (the file that automatically mounts volumes/partitions on boot):
 
 ```bash
-genfstab -U -p /mnt >> /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
 > This will append the UUIDs of the partitions to the `fstab` file: root, boot, home, and swap.
