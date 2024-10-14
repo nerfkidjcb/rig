@@ -350,7 +350,7 @@ mkfs.ext4 /dev/vg_system/lv_productivity
 Format the entertainment user partition as ext4:
 
 ```bash
-mkfs.ext4 /dev/vg_system/lv_productivity
+mkfs.ext4 /dev/vg_system/lv_entertainment
 ```
 
 Format the games partition as ext4:
@@ -428,7 +428,7 @@ pacstrap -i /mnt base
 Generate the `fstab` file (the file that automatically mounts volumes/partitions on boot):
 
 ```bash
-genfstab -U -p /mnt >> /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
 > This will append the UUIDs of the partitions to the `fstab` file: root, boot, home, and swap.
