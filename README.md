@@ -601,6 +601,12 @@ Unmount the partitions:
 umount -a
 ```
 
+Reboot the system:
+
+```bash
+reboot
+```
+
 > **Note**: You can unplug the USB drive before the system reboots.
 
 ### Post-installation
