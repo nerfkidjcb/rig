@@ -494,7 +494,7 @@ sudo EDITOR=nvim visudo
 Uncomment the line:
 
 ```bash
-%wheel ALL=(ALL) ALL
+%wheel ALL=(ALL:ALL) ALL
 ```
 
 Make sure the kernel knows how to deal with encrypted partitions:
