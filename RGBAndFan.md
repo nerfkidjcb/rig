@@ -11,4 +11,4 @@ Since I am a Pretty Boi who likes RGB, I need some software to make sure my ligh
 [OpenRGB](https://openrgb.org/#downloads) should solve my problems here, too. Wow.
 
 ## Lian Li Fan Control
-Found [this](https://www.reddit.com/r/lianli/comments/13qzmg4/unisync_a_lightweight_tool_to_configure_lian_li/), which hopefully will solve my 'no turning on' troubles as well as lighting (if I'm lucky)
+Hard wired my fan power cables to my motherboard, lol. And OpenRGB does the rest
