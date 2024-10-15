@@ -500,7 +500,7 @@ sudo EDITOR=nvim visudo
 Uncomment the line:
 
 ```bash
-%wheel ALL=(ALL) ALL
+%wheel ALL=(ALL:ALL) ALL
 ```
 
 Make sure the kernel knows how to deal with encrypted partitions:
@@ -607,6 +607,12 @@ Unmount the partitions:
 umount -a
 ```
 
+Reboot the system:
+
+```bash
+reboot
+```
+
 > **Note**: You can unplug the USB drive before the system reboots.
 
 ### Post-installation
@@ -658,7 +664,7 @@ stow --adopt -t ~ -d rig/stow .
 Clone the DWM repository:
 
 ```bash
-git clone https://git.suckless.org/dwm
+sudo git clone https://git.suckless.org/dwm
 ```
 
 Navigate to the cloned DWM directory:
@@ -670,11 +676,11 @@ cd dwm
 Copy the configruation from the `p/dwm` subdirectory of this repo:
 
 ```bash
-cp ~/rig/p/dwm/config.def.h config.def.h
+sudo cp ~/rig/p/dwm/config.def.h config.def.h
 ```
 
 ```bash
-cp ~/rig/p/dwm/dwm.c dwm.c
+sudo cp ~/rig/p/dwm/dwm.c dwm.c
 ```
 
 Build and install DWM:
@@ -688,7 +694,7 @@ sudo make clean install
 Clone the DWM blocks repository:
 
 ```bash
-git clone https://github.com/torrinfail/dwmblocks.git
+sudo git clone https://github.com/torrinfail/dwmblocks.git
 ```
 
 Navigate into the cloned DWM blocks directory:
@@ -700,7 +706,7 @@ cd dwmblocks
 Copy the DWM blocks configuration from the `p/dwm` subdirectory of this repo:
 
 ```bash
-cp ~/rig/p/dwm/blocks.def.h blocks.def.h
+sudo cp ~/rig/p/dwm/blocks.def.h blocks.def.h
 ```
 
 Build and install DWM blocks:
@@ -714,7 +720,7 @@ sudo make clean install
 Copy the Xorg startup configuration from the `p` subdirectory of this repo:
 
 ```bash
-cp ~/rig/p/dwm/.xinitrc ~/.xinitrc
+sudo cp ~/rig/p/.xinitrc ~/.xinitrc
 ```
 
 ### _Laptop-Specific_ Configuration
