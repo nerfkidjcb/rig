@@ -361,10 +361,16 @@ mkfs.ext4 /dev/vg_games/lv_games
 
 ## Partition mounting
 
+Run this to find device/partition UUIDs. Example for productivty partition
+```bash
+blkid | grep productivity
+
+```
+
 Mount the root partition:
 
 ```bash
-mount /dev/vg_system/lv_root /mnt
+mount UUID=<lv_root_UUID> /mnt
 ```
 
 Create the boot directory:
@@ -376,7 +382,7 @@ mkdir /mnt/boot
 Mount the EFI (second) partition:
 
 ```bash
-mount /dev/<device>p2 /mnt/boot
+mount UUID=<p2_device_uuid> /mnt/boot
 ```
 
 > **Note**: We are not mounting the boot (first) partition...
@@ -390,7 +396,7 @@ mkdir /mnt/p
 Mount the productivity user volume:
 
 ```bash
-mount /dev/vg_system/lv_productivity /mnt/p
+mount UUID=<productivity_UUID> /mnt/p
 ```
 
 Create the entertainment user directory:
@@ -402,7 +408,7 @@ mkdir /mnt/e
 Mount the entertainment user volume:
 
 ```bash
-mount /dev/vg_system/lv_entertainment /mnt/e
+mount UUID=<entertainment_UUID> /mnt/e
 ```
 
 Create the games directory:
@@ -414,7 +420,7 @@ mkdir /mnt/g
 Mount the games partition:
 
 ```bash
-mount /dev/vg_games/lv_games /mnt/g
+mount UUID=<games_UUID> /mnt/g
 ```
 
 ## Configure base system
@@ -545,10 +551,10 @@ Add the encrypt device to the GRUB configuration:
 nvim /etc/default/grub
 ```
 
-Add `cryptdevice=/dev/<device>p3:vg_system` to the `GRUB_CMDLINE_LINUX_DEFAULT` line:
+Add `cryptdevice=/dev/<device>p3:vg_system` to the `GRUB_CMDLINE_LINUX_DEFAULT` line. You want to use the 'part uuid' of the device here
 
 ```bash
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=/dev/<device>p3:vg_system"
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet cryptdevice=/dev/disk/by-partuuid/<part_UUID>:vg_system"
 ```
 
 Setup EFI partition:
@@ -560,7 +566,7 @@ mkdir /boot/EFI
 Mount the EFI partition:
 
 ```bash
-mount /dev/<device>p1 /boot/EFI
+mount UUID=<p1_device_UUID> /boot/EFI
 ```
 
 Install bootloader:
