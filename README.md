@@ -796,6 +796,10 @@ Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following comma
   chmod +x Scripts/logout.sh
   ```
 
+Other packages that make me happy
+- htop
+- pavucontrol from PulseAudio (Run command on startup cos I'm always switching)
+
 Uncomment the `multilib` section in `/etc/pacman.conf`:
 
 ```bash
