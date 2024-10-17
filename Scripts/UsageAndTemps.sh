@@ -61,6 +61,16 @@ get_nvidia_gpu_info() {
     fi
 }
 
+# Function to get NVIDIA VRAM usage
+get_nvidia_vram_usage() {
+    if command -v nvidia-smi &> /dev/null; then
+        vram_usage=$(nvidia-smi | grep "MiB /" | awk '{print $9 "/" $11}')
+        echo "$vram_usage"
+    else
+        echo "N/A"
+    fi
+}
+
 # Print header
 echo "==== System Information ===="
 printf "%-25s\n" "CPU Usage: "
@@ -70,9 +80,10 @@ printf "%-25s\n" "RAM Used: "
 printf "%-25s\n" "RAM Speed: "
 printf "%-25s\n" "GPU Usage: "
 printf "%-25s\n" "GPU Temperature: "
+printf "%-25s\n" "VRAM Usage: "
 echo "============================"
 
-tput cuu 8 # Critical line, things bork without it
+tput cuu 9 # Move up 9 lines
 
 # Main loop
 while true; do
@@ -88,13 +99,16 @@ while true; do
         gpu_info=$(get_nvidia_gpu_info)
         gpu_usage=$(echo "$gpu_info" | awk 'NR==1')
         gpu_temp=$(echo "$gpu_info" | awk 'NR==2')
+        vram_usage=$(get_nvidia_vram_usage)
     elif command -v rocm-smi &> /dev/null; then
         gpu_info=$(get_gpu_info)
         gpu_usage=$(echo "$gpu_info" | awk 'NR==1')
         gpu_temp=$(echo "$gpu_info" | awk 'NR==2')
+        vram_usage="N/A"
     else
         gpu_usage="No GPU found"
         gpu_temp="N/A"
+        vram_usage="N/A"
     fi
 
     # Move cursor up and overwrite each line
@@ -105,7 +119,8 @@ while true; do
     printf "%-25s\n" "RAM Speed: $ram_speed        "
     printf "%-25s\n" "GPU Usage: $gpu_usage%       "
     printf "%-25s\n" "GPU Temperature: $gpu_temp    "
+    printf "%-25s\n" "VRAM Usage: $vram_usage      "
 
-    tput cuu 7  # Move cursor up 7 lines
+    tput cuu 8  # Move cursor up 8 lines
     sleep 1
 done
