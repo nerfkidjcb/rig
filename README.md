@@ -481,6 +481,13 @@ passwd e
 
 Enter and confirm the password.
 
+Uncomment the `multilib` section in `/etc/pacman.conf`:
+
+```bash
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
 Install system packages:
 
 ```bash
@@ -781,16 +788,9 @@ Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following comma
 
 - `reboot` : `Shift-Super-R`
 
-- `/mnt/e/Scripts/logout.sh` : `Super-Q`
+- `/home/e/rig/Scripts/logout.sh` : `Super-Q`
 
-  In order to get this command to work, create the `/mnt/e/Scripts/logout.sh` file with the following content:
-
-  ```bash
-  #!/bin/bash
-  pkill -KILL -u $USER
-  ```
-
-  It must then be made executable:
+  This must then be made executable (probably):
 
   ```bash
   chmod +x Scripts/logout.sh
@@ -800,17 +800,11 @@ Other packages that make me happy
 - htop
 - pavucontrol from PulseAudio (Run command on startup cos I'm always switching)
 
-Uncomment the `multilib` section in `/etc/pacman.conf`:
-
-```bash
-[multilib]
-Include = /etc/pacman.d/mirrorlist
-```
 
 Upgrade the system:
 
 ```bash
-pacman -Syu
+./Scripts/UpdateAll.sh
 ```
 
 Give permissions to external mount points if games are stored on them:
