@@ -112,7 +112,7 @@ while true; do
     fi
 
     # Move cursor up and overwrite each line
-    printf "%-25s\n" "CPU Usage: $cpu_usage%  "  # Standardize output
+    printf "%-25s\n" "CPU Usage: $cpu_usage  "  # Standardize output
     printf "%-25s\n" "CPU Temperature: $cpu_temp   "
     printf "%-25s\n" "CPU Clock: $cpu_clock GHz    "
     printf "%-25s\n" "RAM Used: $ram_usage         "
