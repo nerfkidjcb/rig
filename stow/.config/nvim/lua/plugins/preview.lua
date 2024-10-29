@@ -6,8 +6,6 @@ return {
       vim.fn["mkdp#util#install"]()
    end,
    config = function()
-      -- Automatically start preview when opening a Markdown file
-      vim.g.mkdp_auto_start = 1
       -- Automatically close the preview when leaving the Markdown buffer
       vim.g.mkdp_auto_close = 1
       -- Set the default theme for the preview (light or dark)
