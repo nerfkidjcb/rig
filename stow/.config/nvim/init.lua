@@ -4,6 +4,10 @@ vim.opt.number = true
 -- Use spaces instead of tabs
 vim.opt.expandtab = true
 
+-- Enable spell checking for UK and US English
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us', 'en_gb' }
+
 -- A <Tab> counts as 3 spaces
 vim.opt.tabstop = 3
 vim.opt.softtabstop = 3
