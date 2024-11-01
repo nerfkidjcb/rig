@@ -30,7 +30,8 @@ get_ram_usage() {
 
 # Function to get RAM speed
 get_ram_speed() {
-    ram_speed=$(dmidecode --type memory | awk '/Speed:/{print $2 " " $3; exit}')
+    ram_speed=$(sudo dmidecode --type memory | awk -F': ' '/Configured Memory Speed/ {print $2}' | head -n 1
+)
     if [ -z "$ram_speed" ]; then
         ram_speed="N/A"
     fi
