@@ -666,6 +666,20 @@ stow --adopt -t ~ -d rig/stow .
 
 > Note: The `--adopt` flag overrides the dotfiles stored in this repo with the ones already configured on the system. This can be used to override all files dotfiles on the system easily without having to delete them first, and then after the symlinks are created, `git restore .` can be applied to this repo to revert all configs to how they are here.
 
+
+### Fix up the home directories
+
+TODO: fix this earlier in the process (but this way is tried and tested)
+Also, if you do this retroactively (after starting an xfce session on e user) then run `xfce4-session-logout --fast` to quit your session without saving, so things don't go funny if it tries to restore
+
+- Make sure you *are not* logged in as the user you are messing with
+
+``` sudo cp -r /home/<user> /mnt/<user>/home```
+``` sudo chown -R /mnt/<user> <user>```
+```sudo usermod -d <user> /mnt/<user>/home```
+- Clean up the old `/home` directory when you are happy you didn't mess up
+
+
 ## Productivity (p) user configuration
 
 Clone the DWM repository:
@@ -788,7 +802,7 @@ Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following comma
 
 - `reboot` : `Shift-Super-R`
 
-- `xfce4-session-logout` : `Super-Q` - Note: if you want to kill your session (if messing with user directories for example. Use `--fast`
+- `xfce4-session-logout` : `Super-Q` - Note: if you want to kill your session (if messing with user directories for example. Use `--fast`)
 
 
 Other packages that make me happy
