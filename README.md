@@ -788,13 +788,8 @@ Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following comma
 
 - `reboot` : `Shift-Super-R`
 
-- `/home/e/rig/Scripts/logout.sh` : `Super-Q`
+- `xfce4-session-logout` : `Super-Q` - Note: if you want to kill your session (if messing with user directories for example. Use `--fast`
 
-  This must then be made executable (probably):
-
-  ```bash
-  chmod +x Scripts/logout.sh
-  ```
 
 Other packages that make me happy
 - htop
