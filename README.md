@@ -2,13 +2,10 @@
 
 The [Arch Linux wiki](https://wiki.archlinux.org/) contains a comprehensive, up-to-date guide on how to install Arch Linux. And the [Arch Linux Installation Guide](https://wiki.archlinux.org/index.php/Installation_guide) is a good starting point. The [Arch Linux website](https://www.archlinux.org/) provides the latest news on the distro which is important to keep up with.
 
-> **Credit**
->
-> - The wallpaper stored in `~/.config/wallpaper.png` was created by [Ash Thorp](https://www.artstation.com/artwork/ba6g2n).
 
 ## Overview
 
-- I use Arch Linux on all of my personal devices (PC and Laptop).
+- I use Arch Linux on all of my personal devices (PC and Laptop). (I don't, Dan does)
 
   - On my PC I configure two users: a 'productivity' user running DWM for development work, and an 'entertainment' user running XFCE for playing video games (a traditional floating window manager really helps run Steam/games, which is why I don't use DWM for everything).
   - On my laptop, I run only DWM.
