@@ -361,7 +361,7 @@ mkfs.ext4 /dev/vg_games/lv_games
 
 ## Partition mounting
 
-Run this to find device/partition UUIDs. Example for productivty partition
+Run this to find device/partition UUIDs and `/dev` directories. Example for productivty partition
 ```bash
 blkid | grep productivity
 
@@ -370,7 +370,7 @@ blkid | grep productivity
 Mount the root partition:
 
 ```bash
-mount UUID=<lv_root_UUID> /mnt
+mount /dev/vg_system/lv_root /mnt
 ```
 
 Create the boot directory:
@@ -382,7 +382,7 @@ mkdir /mnt/boot
 Mount the EFI (second) partition:
 
 ```bash
-mount UUID=<p2_device_uuid> /mnt/boot
+mount /dev/<device>p2 /mnt/boot
 ```
 
 > **Note**: We are not mounting the boot (first) partition...
@@ -396,7 +396,7 @@ mkdir /mnt/p
 Mount the productivity user volume:
 
 ```bash
-mount UUID=<productivity_UUID> /mnt/p
+mount /dev/vg_system/lv_entertainment /mnt/e
 ```
 
 Create the entertainment user directory:
@@ -408,7 +408,7 @@ mkdir /mnt/e
 Mount the entertainment user volume:
 
 ```bash
-mount UUID=<entertainment_UUID> /mnt/e
+mount /dev/vg_system/lv_entertainment /mnt/e
 ```
 
 Create the games directory:
@@ -420,7 +420,7 @@ mkdir /mnt/g
 Mount the games partition:
 
 ```bash
-mount UUID=<games_UUID> /mnt/g
+mount /dev/vg_games/lv_games /mnt/g
 ```
 
 ## Configure base system
@@ -573,7 +573,7 @@ mkdir /boot/EFI
 Mount the EFI partition:
 
 ```bash
-mount UUID=<p1_device_UUID> /boot/EFI
+mount /dev/<device>p1 /boot/EFI
 ```
 
 Install bootloader:
