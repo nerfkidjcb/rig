@@ -669,6 +669,7 @@ stow --adopt -t ~ -d rig/stow .
 
 ### Fix up the home directories
 
+If you leave the setup as is, the user home directories will be in the system volume (with 30GB of space to share)
 TODO: fix this earlier in the process (but this way is tried and tested)
 Also, if you do this retroactively (after starting an xfce session on e user) then run `xfce4-session-logout --fast` to quit your session without saving, so things don't go funny if it tries to restore
 
