@@ -361,7 +361,7 @@ mkfs.ext4 /dev/vg_games/lv_games
 
 ## Partition mounting
 
-Run this to find device/partition UUIDs. Example for productivty partition
+Run this to find device/partition UUIDs and `/dev` directories. Example for productivty partition
 ```bash
 blkid | grep productivity
 
@@ -370,7 +370,7 @@ blkid | grep productivity
 Mount the root partition:
 
 ```bash
-mount UUID=<lv_root_UUID> /mnt
+mount /dev/vg_system/lv_root /mnt
 ```
 
 Create the boot directory:
@@ -382,7 +382,7 @@ mkdir /mnt/boot
 Mount the EFI (second) partition:
 
 ```bash
-mount UUID=<p2_device_uuid> /mnt/boot
+mount /dev/<device>p2 /mnt/boot
 ```
 
 > **Note**: We are not mounting the boot (first) partition...
@@ -396,7 +396,7 @@ mkdir /mnt/p
 Mount the productivity user volume:
 
 ```bash
-mount UUID=<productivity_UUID> /mnt/p
+mount /dev/vg_system/lv_entertainment /mnt/e
 ```
 
 Create the entertainment user directory:
@@ -408,7 +408,7 @@ mkdir /mnt/e
 Mount the entertainment user volume:
 
 ```bash
-mount UUID=<entertainment_UUID> /mnt/e
+mount /dev/vg_system/lv_entertainment /mnt/e
 ```
 
 Create the games directory:
@@ -420,7 +420,7 @@ mkdir /mnt/g
 Mount the games partition:
 
 ```bash
-mount UUID=<games_UUID> /mnt/g
+mount /dev/vg_games/lv_games /mnt/g
 ```
 
 ## Configure base system
@@ -573,7 +573,7 @@ mkdir /boot/EFI
 Mount the EFI partition:
 
 ```bash
-mount UUID=<p1_device_UUID> /boot/EFI
+mount /dev/<device>p1 /boot/EFI
 ```
 
 Install bootloader:
@@ -666,28 +666,39 @@ stow --adopt -t ~ -d rig/stow .
 
 > Note: The `--adopt` flag overrides the dotfiles stored in this repo with the ones already configured on the system. This can be used to override all files dotfiles on the system easily without having to delete them first, and then after the symlinks are created, `git restore .` can be applied to this repo to revert all configs to how they are here.
 
+
+### Fix up the home directories
+
+If you leave the setup as is, the user home directories will be in the system volume (with 30GB of space to share)
+TODO: fix this earlier in the process (but this way is tried and tested)
+Also, if you do this retroactively (after starting an xfce session on e user) then run `xfce4-session-logout --fast` to quit your session without saving, so things don't go funny if it tries to restore
+
+- Make sure you *are not* logged in as the user you are messing with
+
+```bash
+sudo cp -r /home/<user> /mnt/<user>/home
+```
+```bash
+sudo chown -R /mnt/<user> <user>
+```
+```bash
+sudo usermod -d <user> /mnt/<user>/home
+```
+- Clean up the old `/home` directory when you are happy you didn't mess up
+
+
 ## Productivity (p) user configuration
 
 Clone the DWM repository:
 
 ```bash
-sudo git clone https://git.suckless.org/dwm
+sudo git clone https://github.com/nerfkidjcb/my-dwm
 ```
 
 Navigate to the cloned DWM directory:
 
 ```bash
-cd dwm
-```
-
-Copy the configruation from the `p/dwm` subdirectory of this repo:
-
-```bash
-sudo cp ~/rig/p/dwm/config.def.h config.def.h
-```
-
-```bash
-sudo cp ~/rig/p/dwm/dwm.c dwm.c
+cd my-dwm
 ```
 
 Build and install DWM:
@@ -698,22 +709,18 @@ sudo make clean install
 
 > **Note:** If rebuilding DWM after making edits to any of the config, make sure to remove the generated `config.h` beforehand.
 
-Clone the DWM blocks repository:
+Setup the DWM blocks submodule:
 
 ```bash
-sudo git clone https://github.com/torrinfail/dwmblocks.git
+git submodule init
+git submodule update
+
 ```
 
 Navigate into the cloned DWM blocks directory:
 
 ```bash
 cd dwmblocks
-```
-
-Copy the DWM blocks configuration from the `p/dwm` subdirectory of this repo:
-
-```bash
-sudo cp ~/rig/p/dwm/blocks.def.h blocks.def.h
 ```
 
 Build and install DWM blocks:
@@ -788,13 +795,8 @@ Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following comma
 
 - `reboot` : `Shift-Super-R`
 
-- `/home/e/rig/Scripts/logout.sh` : `Super-Q`
+- `xfce4-session-logout` : `Super-Q` - Note: if you want to kill your session (if messing with user directories for example. Use `--fast`)
 
-  This must then be made executable (probably):
-
-  ```bash
-  chmod +x Scripts/logout.sh
-  ```
 
 Other packages that make me happy
 - htop
