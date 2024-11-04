@@ -674,9 +674,15 @@ Also, if you do this retroactively (after starting an xfce session on e user) th
 
 - Make sure you *are not* logged in as the user you are messing with
 
-``` sudo cp -r /home/<user> /mnt/<user>/home```
-``` sudo chown -R /mnt/<user> <user>```
-```sudo usermod -d <user> /mnt/<user>/home```
+```bash
+sudo cp -r /home/<user> /mnt/<user>/home
+```
+```bash
+sudo chown -R /mnt/<user> <user>
+```
+```bash
+sudo usermod -d <user> /mnt/<user>/home
+```
 - Clean up the old `/home` directory when you are happy you didn't mess up
 
 
