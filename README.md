@@ -692,23 +692,13 @@ sudo usermod -d <user> /mnt/<user>/home
 Clone the DWM repository:
 
 ```bash
-sudo git clone https://git.suckless.org/dwm
+sudo git clone https://github.com/nerfkidjcb/my-dwm
 ```
 
 Navigate to the cloned DWM directory:
 
 ```bash
-cd dwm
-```
-
-Copy the configruation from the `p/dwm` subdirectory of this repo:
-
-```bash
-sudo cp ~/rig/p/dwm/config.def.h config.def.h
-```
-
-```bash
-sudo cp ~/rig/p/dwm/dwm.c dwm.c
+cd my-dwm
 ```
 
 Build and install DWM:
@@ -719,22 +709,18 @@ sudo make clean install
 
 > **Note:** If rebuilding DWM after making edits to any of the config, make sure to remove the generated `config.h` beforehand.
 
-Clone the DWM blocks repository:
+Setup the DWM blocks submodule:
 
 ```bash
-sudo git clone https://github.com/torrinfail/dwmblocks.git
+git submodule init
+git submodule update
+
 ```
 
 Navigate into the cloned DWM blocks directory:
 
 ```bash
 cd dwmblocks
-```
-
-Copy the DWM blocks configuration from the `p/dwm` subdirectory of this repo:
-
-```bash
-sudo cp ~/rig/p/dwm/blocks.def.h blocks.def.h
 ```
 
 Build and install DWM blocks:
