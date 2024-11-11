@@ -734,6 +734,17 @@ Copy the Xorg startup configuration from the `p` subdirectory of this repo:
 sudo cp ~/rig/p/.xinitrc ~/.xinitrc
 ```
 
+Set mouse speed (default way too high for me)
+
+Find device ID:
+```bash
+xinput --list
+```
+Modify setting (assuming same name as my mouse)
+```bash
+xinput --set-prop 13 "libinput Accel Speed" -0.65
+```
+
 ### _Laptop-Specific_ Configuration
 
 In order to auto-login as a specific user, open the `getty tty1` service config file:
