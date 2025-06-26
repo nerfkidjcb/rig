@@ -436,6 +436,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 > This will append the UUIDs of the partitions to the `fstab` file: root, boot, home, and swap.
 
+Consider adding `noauto,x-systemd.automount` if you are chasing fast boots or mounting a lot of drives. This stops auto mounting, but sets up to mount on first access
 Chroot into the new system:
 
 ```bash
