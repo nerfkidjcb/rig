@@ -706,7 +706,7 @@ sudo make clean install
 
 > **Note:** If rebuilding DWM after making edits to any of the config, make sure to remove the generated `config.h` beforehand.
 
-Setup the DWM blocks submodule:
+Setup the DWM blocks submodule: (Alternatively, clone from `https://github.com/nerfkidjcb/my-dwm-blocks`
 
 ```bash
 git submodule init

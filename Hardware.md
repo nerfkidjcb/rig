@@ -22,11 +22,5 @@ Not technically a drive on this PC but no doubt I'll keep booting off of this en
 ## 1TB Crucial T705 1TB SSD PCIe Gen5 
 Bought this specifically for the Linux experience. Hoping for boots faster than you can spot a Gillet at Canary Wharf. All things Linux will live here
 
-## 2TB Samsung 970 Evo Plus SSD
-My NTFS drive with steam games from windows [TODO] Hoping to just mount this and be happy after a few commands without reinstalling all me games
-
-## 512GB Seagate FireCuda 510 SSD
-My (ew) Windows installation. I keep this cos it has minecraft and other random Xbox/Windows things that I can't be bothered to replicate. Probably won't mount this to Linux ever, and hope it stays bootable
-
-## 2 TB HDD (Some Seagate thing)
-Has backups of things, probably won't let linux touch it until I'm super sure I know what I'm doing
+## 4TB Samsung 990 Evo Plus SSD
+This has 4 partitions for windows (<500GB) 2TB for shared games NTFS, and 1.2TB for Media ext4. each partition replaces my old windows, media, and 2tb games drive for a two drive setup
