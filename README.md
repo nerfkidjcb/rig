@@ -805,6 +805,8 @@ Go to 'Keyboard Settings' -> 'Application Shortcuts' and set the following comma
 
 - `reboot` : `Shift-Super-R`
 
+- `systemctl suspend` : `Super-S`
+
 - `xfce4-session-logout` : `Super-Q` - Note: if you want to kill your session (if messing with user directories for example. Use `--fast`)
 
 
